@@ -185,7 +185,7 @@ class VenueController extends Controller
             $script="$('#delete_modal').modal('show');$('#delete_form').attr('action','/genres/delete/".encrypt($item->genre_id)."')";
 
             $sub_data['view']='<a  href="/venues/edit/'.encrypt($item->venue_id).'" class="btn btn-sm btn-gray btn-icon mr-2" title="View details">Edit </a>
-            <a   class="btn btn-sm btn-danger btn-icon mr-2" title="View details" onclick="'.$script.'">Delete </a>'
+            '
                      ;
             $data[] = $sub_data;
         }
