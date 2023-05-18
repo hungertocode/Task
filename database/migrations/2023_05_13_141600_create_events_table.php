@@ -25,9 +25,9 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign('genre_id')->references('genre_id')->on('genre');
-            $table->foreign('venue_id')->references('venue_id')->on('venue');
-            $table->foreign('artist_id')->references('artist_id')->on('artist');
+            $table->foreign('genre_id')->references('genre_id')->on('genres')->constrained();
+            $table->foreign('venue_id')->references('venue_id')->on('venues')->constrained();
+            $table->foreign('artist_id')->references('artist_id')->on('artists')->constrained();
         });
     }
 
