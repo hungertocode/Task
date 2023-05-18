@@ -200,6 +200,9 @@ class EventController extends Controller
 
         $data = array();
 
+        $dataQuery=$dataQuery->select('events.event_id','events.title','artists.artist_name','venues.venue_name','events.amount','events.date','events.is_active');
+        // return $parentQuery->get();
+
         foreach ($dataQuery->get() as $item) {
             $sub_data = array();
             $sub_data['event_id'] = $item->event_id ?? '-';
@@ -209,7 +212,7 @@ class EventController extends Controller
             $sub_data['amount'] = $item->amount ?? '-';
             $sub_data['date'] = $item->date ? Carbon::parse($item->date)->format('d/m/Y') : '';
 
-            $sub_data['is_active'] = $item->is_active ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
+            $sub_data['is_active'] = $item->is_active==1? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
             $script = "$('#delete_modal').modal('show');$('#delete_form').attr('action','/events/delete/" . encrypt($item->event_id) . "')";
             $sub_data['view'] = '<a  href="/events/edit/' . encrypt($item->event_id) . '" class="btn btn-sm btn-gray btn-icon mr-2" title="View details">Edit </a>
              
